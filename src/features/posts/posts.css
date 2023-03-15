@@ -1,0 +1,62 @@
+.posts{
+    
+    color: black;
+    background-color: white;
+    width: 300px;
+    
+    margin: 20px;
+    border: 2px solid rgb(175, 175, 175);
+    border-radius: 15px;
+    
+}
+
+.sections{
+    color: blue;
+    background-color: rgb(209, 209, 209);
+   display: grid;
+   justify-content: center;
+   margin-bottom: 70px;
+}
+
+
+#postForm{
+    margin: 50px;
+    display: grid;
+    height: 200px;
+    background-color: aquamarine;
+    width: 300px;
+    padding: 50px;
+    border: 3px solid gray;
+    border-radius: 15px;
+    text-align: center;
+    justify-content: center;
+}
+
+#postForm button{
+    width: 100px;
+    height: 30px;
+    margin-left:80px;
+    border-radius: 10px;
+    border: 2px solid black;
+    background: rgb(92, 92, 236);
+}
+
+#postForm button:hover{
+    background: blue;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+#postForm textarea{
+    width: 250px;
+    height: 120px;
+    resize: none;
+}
+
+#postContent{
+    margin-bottom: 20px;
+}
+
+.SectionAdjuster{
+    height: 500px;
+}
