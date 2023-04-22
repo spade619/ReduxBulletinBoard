@@ -1,12 +1,45 @@
 import React, { useState } from 'react'
 import './posts.css'
+import { useDispatch, useSelector } from 'react-redux'
+import { postAdded } from './postsSlice'
+import { selectAllUsers } from '../users/usersSlice'
 
 const AddPostForm = () => {
+        const dispatch = useDispatch()
         const [title, setTitle] = useState('')
         const [content, setContent] = useState('')
+        const [userId, setUserId] = useState('')
+
+        const users = useSelector(selectAllUsers)
 
         const onTitleChanged = e => setTitle(e.target.value)
         const onContentChanged = e => setContent(e.target.value)
+        const onAuthorChange = e => setUserId(e.target.value)
+
+
+        const handleButtonClick =()=>{
+          if (title && content){
+            dispatch(
+              postAdded({
+          
+                title,
+                content,
+                userId
+              })
+            )
+
+            setTitle('')
+            setContent('')
+          }
+        }
+
+        const canSave = Boolean(title) && Boolean(content) && Boolean(userId)
+        const usersOptions = users.map(user => (
+          <option key={user.id} value={user.id}>
+                    {user.name}
+          </option>
+        ))
+
   return (
     <section className='sections'>
         <h2>Add a New Post</h2>
@@ -19,6 +52,11 @@ const AddPostForm = () => {
                     onChange={onTitleChanged}
 
             />
+            <label htmlFor="postAuthor">Author:</label>
+            <select id="postAuthor" value={userId} onChange={onAuthorChange}>
+                  <option value=""></option>
+                  {usersOptions}
+            </select>
             <label htmlFor='postContent'> Content:</label>
             <textarea 
             id='postContent'
@@ -26,7 +64,9 @@ const AddPostForm = () => {
             value={content}
             onChange={onContentChanged}
             />
-            <button type='button'>Save</button>
+            <button onClick = {handleButtonClick}
+                    type='button'
+                    disabled={!canSave}>Save</button>
 
          
         </form>
